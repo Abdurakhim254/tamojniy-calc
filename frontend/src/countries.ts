@@ -1,0 +1,23 @@
+/** Названия 57 стран из списков (пост. №3267) на трёх языках: [ru, en, uz]. Не зависит от данных Intl в браузере. */
+export const COUNTRY_NAMES: Record<string, [string, string, string]> = {
+  AT: ['Австрия', 'Austria', 'Avstriya'], AF: ['Афганистан', 'Afghanistan', "Afg'oniston"], BD: ['Бангладеш', 'Bangladesh', 'Bangladesh'],
+  BE: ['Бельгия', 'Belgium', 'Belgiya'], BG: ['Болгария', 'Bulgaria', 'Bolgariya'], BR: ['Бразилия', 'Brazil', 'Braziliya'],
+  GB: ['Великобритания', 'United Kingdom', 'Buyuk Britaniya'], HU: ['Венгрия', 'Hungary', 'Vengriya'], VN: ['Вьетнам', 'Vietnam', 'Vyetnam'],
+  DE: ['Германия', 'Germany', 'Germaniya'], GR: ['Греция', 'Greece', 'Gretsiya'], DK: ['Дания', 'Denmark', 'Daniya'],
+  EG: ['Египет', 'Egypt', 'Misr'], IL: ['Израиль', 'Israel', 'Isroil'], IN: ['Индия', 'India', 'Hindiston'],
+  ID: ['Индонезия', 'Indonesia', 'Indoneziya'], IE: ['Ирландия', 'Ireland', 'Irlandiya'], ES: ['Испания', 'Spain', 'Ispaniya'],
+  IT: ['Италия', 'Italy', 'Italiya'], JO: ['Иордания', 'Jordan', 'Iordaniya'], CY: ['Кипр', 'Cyprus', 'Kipr'],
+  KR: ['Республика Корея', 'South Korea', 'Janubiy Koreya'], CN: ['Китай', 'China', 'Xitoy'], LV: ['Латвия', 'Latvia', 'Latviya'],
+  LT: ['Литва', 'Lithuania', 'Litva'], MT: ['Мальта', 'Malta', 'Malta'], LU: ['Люксембург', 'Luxembourg', 'Lyuksemburg'],
+  NL: ['Нидерланды', 'Netherlands', 'Niderlandiya'], PT: ['Португалия', 'Portugal', 'Portugaliya'], PK: ['Пакистан', 'Pakistan', 'Pokiston'],
+  PL: ['Польша', 'Poland', 'Polsha'], SI: ['Словения', 'Slovenia', 'Sloveniya'], RO: ['Румыния', 'Romania', 'Ruminiya'],
+  SK: ['Словакия', 'Slovakia', 'Slovakiya'], SG: ['Сингапур', 'Singapore', 'Singapur'], US: ['США', 'United States', 'AQSh'],
+  TR: ['Турция', 'Türkiye', 'Turkiya'], FI: ['Финляндия', 'Finland', 'Finlyandiya'], FR: ['Франция', 'France', 'Fransiya'],
+  HR: ['Хорватия', 'Croatia', 'Xorvatiya'], CZ: ['Чехия', 'Czechia', 'Chexiya'], SE: ['Швеция', 'Sweden', 'Shvetsiya'],
+  CH: ['Швейцария', 'Switzerland', 'Shveytsariya'], EE: ['Эстония', 'Estonia', 'Estoniya'], JP: ['Япония', 'Japan', 'Yaponiya'],
+  SA: ['Саудовская Аравия', 'Saudi Arabia', 'Saudiya Arabistoni'], MY: ['Малайзия', 'Malaysia', 'Malayziya'],
+  BY: ['Беларусь', 'Belarus', 'Belarus'], GE: ['Грузия', 'Georgia', 'Gruziya'], KZ: ['Казахстан', 'Kazakhstan', "Qozog'iston"],
+  KG: ['Кыргызстан', 'Kyrgyzstan', "Qirg'iziston"], MD: ['Молдова', 'Moldova', 'Moldova'], RU: ['Россия', 'Russia', 'Rossiya'],
+  TM: ['Туркменистан', 'Turkmenistan', 'Turkmaniston'], UA: ['Украина', 'Ukraine', 'Ukraina'], TJ: ['Таджикистан', 'Tajikistan', 'Tojikiston'],
+  AZ: ['Азербайджан', 'Azerbaijan', 'Ozarbayjon'],
+};
