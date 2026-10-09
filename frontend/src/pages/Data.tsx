@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { api, Stats } from '../api';
+import { api, API_BASE_URL, Stats } from '../api';
 import { Key, useI18n } from '../i18n';
 
 const SETTING_KEYS = ['vatPercent', 'customsFeePercent', 'customsFeeMaxUzs', 'benefitUntil', 'otherMultiplier', 'tempPercentPerMonth'] as const;
@@ -22,7 +22,7 @@ function Importer({ kind, onDone }: { kind: 'codes' | 'rates' | 'documents'; onD
     <div className="import">
       <h3>{t(`dt.${kind}.title` as Key)}</h3>
       <p className="muted small">{t(`dt.${kind}.hint` as Key)}</p>
-      {kind === 'rates' && <p><a href="/api/admin/rates/template">{t('dt.rates.tpl')}</a></p>}
+      {kind === 'rates' && <p><a href={`${API_BASE_URL}/admin/rates/template`}>{t('dt.rates.tpl')}</a></p>}
       <input type="file" accept=".xlsx,.xls,.csv" onChange={(e) => setFile(e.target.files?.[0] ?? null)} />
       <label className="check"><input type="checkbox" checked={replace} onChange={(e) => setReplace(e.target.checked)} /> {t('dt.replace')}</label>
       <button className="primary" disabled={!file} onClick={go}>{t('dt.upload')}</button>

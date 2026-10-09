@@ -1,15 +1,17 @@
+export const API_BASE_URL = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
+
 const adminToken = () => { try { return sessionStorage.getItem('adminToken') || ''; } catch { return ''; } };
 
-/** Ошибка API: сервер присылает { code, params }, текст подбирает интерфейс на нужном языке. */
 export class ApiError extends Error {
   constructor(public code: string, public params: Record<string, unknown> = {}, public status = 400) { super(code); }
 }
 
 async function req<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch('/api' + path, init); // сетевой сбой → TypeError, его ловит errText()
+  const url = `${API_BASE_URL}${path.startsWith('/') ? path : '/' + path}`;
+  const res = await fetch(url, init);
   if (!res.ok) {
     let body: { code?: string; params?: Record<string, unknown> } = {};
-    try { body = await res.json(); } catch { /* не JSON */ }
+    try { body = await res.json(); } catch { /* ignore */ }
     throw new ApiError(body.code || 'unknown', body.params, res.status);
   }
   return res.json();
@@ -61,7 +63,7 @@ export const api = {
   stats: () => req<Stats>('/stats'),
   calc: (b: CalcRequest) => req<CalcResponse>('/calc', json('POST', b)),
   exportXlsx: async (b: CalcRequest) => {
-    const res = await fetch('/api/calc/export', json('POST', b));
+    const res = await fetch(`${API_BASE_URL}/calc/export`, json('POST', b));
     if (!res.ok) throw new ApiError('export');
     return res.blob();
   },
