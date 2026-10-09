@@ -1,6 +1,5 @@
 import { Client } from 'pg';
 
-/** Параметры подключения: либо DATABASE_URL, либо DB_HOST/DB_PORT/DB_USER/DB_PASSWORD/DB_NAME. */
 export function pgOptions() {
   const ssl = process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined;
   if (process.env.DATABASE_URL) return { type: 'postgres' as const, url: process.env.DATABASE_URL, ssl };
@@ -15,7 +14,6 @@ export function pgOptions() {
   };
 }
 
-/** Создаёт базу данных, если её ещё нет (TypeORM сам БД не создаёт). */
 export async function ensureDatabase() {
   const o = pgOptions() as { url?: string; host?: string; port?: number; username?: string; password?: string; database?: string; ssl?: any };
   let target = o.database;
@@ -33,11 +31,10 @@ export async function ensureDatabase() {
     const { rowCount } = await client.query('SELECT 1 FROM pg_database WHERE datname = $1', [target]);
     if (!rowCount) {
       await client.query(`CREATE DATABASE "${String(target).replace(/"/g, '""')}"`);
-      console.log(`База данных "${target}" создана`);
+      console.log(`Database "${target}" created`);
     }
   } catch (e) {
-    // нет прав на CREATE DATABASE или служебная БД недоступна — пусть TypeORM подключится к уже существующей
-    console.warn(`Не удалось проверить/создать БД: ${(e as Error).message}`);
+    console.warn(`Could not verify/create DB: ${(e as Error).message}`);
   } finally {
     await client.end().catch(() => undefined);
   }

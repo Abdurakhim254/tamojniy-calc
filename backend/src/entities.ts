@@ -2,41 +2,39 @@ import { Column, Entity, Index, PrimaryColumn, PrimaryGeneratedColumn } from 'ty
 
 @Entity()
 export class TnvedCode {
-  @PrimaryColumn() code!: string; // 10 цифр без пробелов
-  @Column() display!: string; // 0101 21 000 0
+  @PrimaryColumn() code!: string;
+  @Column() display!: string;
   @Column({ type: 'text', nullable: true }) unit!: string | null;
   @Column('text') description!: string;
-  @Column('text') searchText!: string; // нижний регистр, считается в коде — поиск не зависит от локали БД
-  @Index() @Column() heading!: string; // первые 4 цифры
+  @Column('text') searchText!: string;
+  @Index() @Column() heading!: string;
 }
 
-/** Ставки. code может быть 2..10 цифр — ищется самый длинный подходящий префикс. */
 @Entity()
 export class Rate {
   @PrimaryColumn() code!: string;
   @Column({ type: 'float', nullable: true }) dutyPercent!: number | null;
-  @Column({ type: 'float', nullable: true }) dutySpecific!: number | null; // за единицу измерения
+  @Column({ type: 'float', nullable: true }) dutySpecific!: number | null;
   @Column({ type: 'text', nullable: true }) dutyCurrency!: string | null;
   @Column({ type: 'float', nullable: true }) excisePercent!: number | null;
   @Column({ type: 'float', nullable: true }) exciseSpecific!: number | null;
   @Column({ type: 'text', nullable: true }) exciseCurrency!: string | null;
-  @Column({ type: 'float', nullable: true }) vatPercent!: number | null; // null => общая ставка НДС
-  @Column({ type: 'float', nullable: true }) utilFee!: number | null; // утильсбор, сум
+  @Column({ type: 'float', nullable: true }) vatPercent!: number | null;
+  @Column({ type: 'float', nullable: true }) utilFee!: number | null;
   @Column({ type: 'text', nullable: true }) note!: string | null;
 }
 
-/** Временные льготы (напр. УП-145: нулевая пошлина на ряд товаров). */
 @Entity()
 export class Preference {
   @PrimaryGeneratedColumn() id!: number;
-  @Column() name!: string; // ru
+  @Column() name!: string;
   @Column({ type: 'text', nullable: true }) nameEn!: string | null;
   @Column({ type: 'text', nullable: true }) nameUz!: string | null;
   @Column('simple-json') prefixes!: string[];
   @Column('simple-json') exceptPrefixes!: string[];
   @Column('float') dutyPercent!: number;
-  @Column() validFrom!: string; // YYYY-MM-DD, включительно
-  @Column() validTo!: string; // YYYY-MM-DD, не включительно
+  @Column() validFrom!: string;
+  @Column() validTo!: string;
   @Column() source!: string;
 }
 
@@ -44,8 +42,8 @@ export class Preference {
 export class Country {
   @PrimaryColumn() iso!: string;
   @Column() name!: string;
-  @Column() regime!: string; // 'ZST' | 'MFN'
-  @Column({ default: false }) goodsListOnly!: boolean; // TM, SG: льгота только на перечень товаров
+  @Column() regime!: string;
+  @Column({ default: false }) goodsListOnly!: boolean;
 }
 
 @Entity()
@@ -60,7 +58,7 @@ export class DocumentReq {
   @PrimaryGeneratedColumn() id!: number;
   @Index() @Column() codePrefix!: string;
   @Column() title!: string;
-  @Column({ default: 'other' }) kind!: string; // certificate | license | benefit | other
+  @Column({ default: 'other' }) kind!: string;
 }
 
 @Entity()
